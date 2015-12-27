@@ -1,5 +1,6 @@
 IBERO = {Author : 'Ignacio Medina Castillo'};
 IBERO.classList = {};
+IBERO.templateList = {};
 IBERO.classList.controller = {};
 IBERO.classList.interface = {};
 IBERO.classList.view = {};
@@ -167,22 +168,33 @@ IBERO.Describe.Model = function(className,classObject){
   if(!IBERO.validateClass(className,classObject,classType))return false;
    
    IBERO.classList[classType][className] = function(params){
-		params = params ? params : {};
-		var priv = this;
-		// variable privadas generales
-	  IBERO.createPublic(priv,className,classObject,params,classType);
-  		//metodos generales
-		IBERO.InjectGenericMethods(priv);
-  		//
-		classObject.builder(priv,params);
+    params = params ? params : {};
+    var priv = this;
+    // variable privadas generales
+    IBERO.createPublic(priv,className,classObject,params,classType);
+      //metodos generales
+    IBERO.InjectGenericMethods(priv);
+      //
+    classObject.builder(priv,params);
 
-		return priv.publ;
-	};
-	
-	IBERO.classList[classType][className].DOC = classObject;
+    return priv.publ;
+  };
+  
+  IBERO.classList[classType][className].DOC = classObject;
 };
 
+IBERO.Describe.Template = function(className,classObject){  
+   IBERO.templateList[className] = function(params){
+    params = params ? params : {};
+    var templateString = classObject.builder(params);
 
+    return $(templateString);
+  };
+};
+
+IBERO.Create.Template = function(className,params){  
+    return IBERO.templateList[className](params);
+};
 
 IBERO.Create.Controller = function(className,params){
 	var newObject = new IBERO.classList.controller[className](params);

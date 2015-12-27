@@ -2,9 +2,7 @@
 
   builder: function(priv,params){
     priv.indicatorsHandler  = ò_ó.Create('IndicatorsHandler', {indicators:params.indicators},params.indicatorsHandler); 
-    //
-    
-    priv.ΦlistenEvent(priv.view,'click','onClick',priv.publ);
+   
     priv.ΦlistenEvent(priv.view,'rotated','onRotated',priv.publ);
     priv.indicatorsHandler.renderTo(priv.view.getDomElement());
   },
@@ -23,17 +21,6 @@
        priv.indicatorsHandler.refresh();
     };
     
-    publ.onClick = function(event) {
-      var objectClicked = ò_ó.getObjectFromDomElement(event.target);
-      //TODO, modify what is oppened and what not.
-      if (objectClicked.getObjectType() === 'CityController'){ // the object is itself
-        priv.indicatorsHandler.toggleVisibility(); // shall we open a menu instead of only togle movements optiones visibilitiy
-      }
-      else{
-        objectClicked.onClick(priv.publ);  
-      }
-    };
-    
     publ.onRotated = function(rotation) {
       priv.indicatorsHandler.rotateIndicators(-1 * rotation);
     };
@@ -50,6 +37,10 @@
     publ.setDisplacementVisibility= function(visibility){
       priv.indicatorsHandler.toggleVisibility(visibility);
     };
+
+    publ.openIndicatorInfoPanel = function(reportInfo){
+
+    }
   }
 });
 
@@ -59,9 +50,7 @@
   builder: function(priv,params){
     priv.controller = params.controller;    
 
-    $(priv.mainDomElement).click(function(event) {
-       priv.publ.ΦfireEvent('click',event);
-    });
+   
 
     Draggable.create(priv.mainDomElement, {type: "rotation",     throwProps: true,
       onDrag: function(){

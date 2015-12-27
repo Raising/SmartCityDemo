@@ -82,12 +82,41 @@
   background-size: 30px 30px;
    background-image: url("../resources/character/farola.png");
   /*background: linear-gradient(to right, rgba(28,28,28,1) 0%, rgba(28,28,28,1) 37%, rgba(102,102,102,1) 49%, rgba(212,42,42,1) 50%, rgba(102,102,102,1) 51%, rgba(28,28,28,1) 65%, rgba(28,28,28,1) 100%);*/
+  
   opacity: 1;
   pointer-events:auto;
 }
 
-.arcHandlerContainer{
-  pointer-events:none;
-  width: 100px;
-  height: 100px;
+
+.popUpView{
+  position:absolute;
+  min-width: 100px;
+  min-height:50px;
+  border-radius:3px;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 8px 8px 5px #888888;
+  opacity: 0;
+
+  pointer-events:auto;
+}
+
+.indicatorInfoPopUp-Line{
+	width: 150px;
+
+}
+.indicatorInfoPopUp-Title{
+  width: 80px;
+  margin-right: 10px;
+  background: #6A9;
+  display: inline; 
+
+}
+
+.indicatorInfoPopUp-Info{
+  
+  display: inline;
+  width: 30px;
+  margin-right: 2px;
+  background-color: #EAA;
+  overflow: hidden; 
 }
